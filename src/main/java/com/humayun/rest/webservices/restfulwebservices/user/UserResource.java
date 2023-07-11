@@ -1,9 +1,9 @@
 package com.humayun.rest.webservices.restfulwebservices.user;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import java.net.URI;
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class UserResource {
 
     //POST /users
     @PostMapping("/users")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         User savedUsers = service.save(user);
 
         // Returns status & Location - /users/{id}
