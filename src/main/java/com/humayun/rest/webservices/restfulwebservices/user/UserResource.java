@@ -21,7 +21,7 @@ public class UserResource {
 
     // GET /users/{id}
     @GetMapping("/users/{id}")
-    public User retrieveUsers(@PathVariable int id) {
+    public User retrieveUser(@PathVariable int id) {
         User user = service.findOne(id);
         if(user==null)
             throw new UserNotFoundException("id:" + id);
@@ -36,4 +36,9 @@ public class UserResource {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUsers.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
+
+    // Delete /users/{id}
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable int id) {
+        service.deleteById(id);   }
 }
